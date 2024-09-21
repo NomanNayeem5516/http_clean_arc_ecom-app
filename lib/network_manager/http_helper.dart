@@ -13,6 +13,14 @@ import '../utils/toast_massage.dart';
 
 
 class HttpHelper{
+  // Map<String,String> header(bool isRequireAuthorization){
+  //   if(isRequireAuthorization){
+  //     return {"Contuct-Type":"application/json","Bearer${(StorageHelpher().getUserBearerToken())}"}
+  //   }
+  // }
+
+
+
   ///Get Api
   Future<dynamic> get({required String url, bool isRequireAuthorization = false}) async {
     Map<String, String> apiHeaders = {"Content-Type": "application/json"};
