@@ -1,16 +1,13 @@
-
-
-
 import 'http_helper.dart';
 
-class RestClient{
+class RestClient {
+  static const String baseUrl = "https://api.escuelajs.co";
 
+  static final HttpHelper _httpHelper = HttpHelper();
 
-  static final HttpHelper _httpHelper=HttpHelper();
-
-  // static Future<UserListInObjectModel> getUserListInObject()async{
-  //   Map<String, dynamic> response=await _httpHelper.get(url: "https://reqres.in/api/users?page=2");
-  //   return UserListInObjectModel.fromJson(response);
-  // }
-
+  static Future<dynamic> logIn(Object requestBody) async {
+    Map<String, dynamic> response = await _httpHelper.post(
+        url: "$baseUrl/api/v1/auth/login", requestBody: requestBody);
+    return response;
+  }
 }
