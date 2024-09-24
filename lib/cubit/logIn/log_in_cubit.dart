@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
+import '../../screens/login_screen/bottom_bar_tabs.dart';
+
 part 'log_in_state.dart';
 
 class LogInCubit extends Cubit<LogInState> {
@@ -16,9 +18,9 @@ class LogInCubit extends Cubit<LogInState> {
     };
     RestClient.logIn(requestBody).then((value){
       emit(LogInLoaded());
-      Navigator.
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const BottomBarTabs()));
 
-    }).onError((errorr,stackTrace){
+    }).onError((error,stackTrace){
       emit(LogInError());
     });
   }

@@ -1,8 +1,10 @@
+import 'package:clean_arc_http_ecom_app/cubit/logIn/log_in_cubit.dart';
 import 'package:clean_arc_http_ecom_app/helper/color_helper.dart';
 import 'package:clean_arc_http_ecom_app/helper/dimention_helper.dart';
 import 'package:clean_arc_http_ecom_app/helper/font_helper.dart';
 import 'package:clean_arc_http_ecom_app/helper/string_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -50,17 +52,32 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(
               height: 50,
               width: double.infinity,
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: ColorHelper.primaryColor),
-                  onPressed: () {},
-                  child: const Text(
-                    StringHelper.logIn,
-                    style: TextStyle(
-                      color: ColorHelper.whiteColor,
-                      fontSize: FontHelper.font_18
-                    ),
-                  )),
+              child: BlocProvider(
+                create: (context) => LogInCubit(),
+                child: BlocBuilder<LogInCubit, LogInState>(
+                  builder: (context, state) {
+                    return ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: ColorHelper.primaryColor),
+                        onPressed: () {
+                          context.read<LogInCubit>().logIn(
+                              email: email.text,
+                              password: password.text,
+                              context: context);
+                        },
+                        child: state is LogInLoading
+                            ? const CircularProgressIndicator(
+                                color: ColorHelper.whiteColor,
+                              )
+                            : const Text(
+                                StringHelper.logIn,
+                                style: TextStyle(
+                                    color: ColorHelper.whiteColor,
+                                    fontSize: FontHelper.font_18),
+                              ));
+                  },
+                ),
+              ),
             )
           ],
         ),

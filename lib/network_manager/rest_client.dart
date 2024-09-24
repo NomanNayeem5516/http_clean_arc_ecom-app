@@ -1,9 +1,10 @@
 import 'http_helper.dart';
 
 class RestClient {
+  static final HttpHelper _httpHelper = HttpHelper();
   static const String baseUrl = "https://api.escuelajs.co";
 
-  static final HttpHelper _httpHelper = HttpHelper();
+
 
   static Future<dynamic> logIn(Object requestBody) async {
     Map<String, dynamic> response = await _httpHelper.post(
