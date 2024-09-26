@@ -60,6 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: ElevatedButton.styleFrom(
                             backgroundColor: ColorHelper.primaryColor),
                         onPressed: () {
+
                           context.read<LogInCubit>().logIn(
                               email: email.text,
                               password: password.text,

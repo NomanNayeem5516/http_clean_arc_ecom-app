@@ -33,6 +33,7 @@ class HttpHelper{
     try {
       final apiResponse = await http.get(Uri.parse(url), headers: apiHeaders);
 
+
       printValue(url, tag: "API GET URL");
 
       printValue(apiHeaders, tag: "API HEADER");
@@ -61,6 +62,7 @@ class HttpHelper{
       }else{
         apiResponse=await http.post(Uri.parse(url),body: jsonEncode(requestBody),headers: apiHeaders);
       }
+
 
       printValue(url,tag: "API GET URL");
       printValue(apiHeaders,tag: "API HEADER");

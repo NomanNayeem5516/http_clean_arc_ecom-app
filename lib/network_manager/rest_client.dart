@@ -9,6 +9,7 @@ class RestClient {
   static Future<dynamic> logIn(Object requestBody) async {
     Map<String, dynamic> response = await _httpHelper.post(
         url: "$baseUrl/api/v1/auth/login", requestBody: requestBody);
+    print(baseUrl);
     return response;
   }
 }
